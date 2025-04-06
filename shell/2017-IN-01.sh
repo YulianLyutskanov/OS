@@ -1,3 +1,3 @@
 #!/bin/bash
 
-find / -user $(whoami) 2> /dev/null
+find / -user $(whoami) 2> /dev/null | wc -l
