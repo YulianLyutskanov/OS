@@ -17,9 +17,9 @@ mkdir -p 'c'
 while read filename; do
     wc=$(cat "${filename}" | wc -l)
 
-    if [[ wc -lt $1 ]]; then
+    if [[ $wc -lt $1 ]]; then
         mv "${filename}" ./a
-    elif [[ wc -lt $2  &&  wc -gt $1 ]]; then
+    elif [[ $wc -lt $2  &&  wc -gt $1 ]]; then
         mv "${filename}" ./b
     else
         mv "${filename}" ./c
