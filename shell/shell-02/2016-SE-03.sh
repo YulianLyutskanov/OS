@@ -8,7 +8,7 @@ fi
 while read line; do
 
     user=$(echo "${line}" | awk -F ':' ' {print $1}')
-    user_gid=$(id -g)
+    user_gid=$(id -g "${user}" )
     homedir=$(echo "${line}" | awk -F ':' ' {print $2}')
 
     if [[ ! -d "${homedir}" ]]; then
@@ -29,5 +29,3 @@ while read line; do
     else
         echo "${user}"
     fi
-
-done < <(cat /etc/passwd | cut -d ':' -f 1,6)
