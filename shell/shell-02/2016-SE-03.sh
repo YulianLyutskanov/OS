@@ -29,3 +29,5 @@ while read line; do
     else
         echo "${user}"
     fi
+
+done < <(cat /etc/passwd | cut -d ':' -f 1,6)
