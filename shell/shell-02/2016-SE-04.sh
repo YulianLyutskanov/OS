@@ -14,15 +14,15 @@ mkdir -p 'a'
 mkdir -p 'b'
 mkdir -p 'c'
 
-while read filename; do
+while read -d $'\0' filename; do
     wc=$(cat "${filename}" | wc -l)
 
     if [[ $wc -lt $1 ]]; then
         mv "${filename}" ./a
-    elif [[ $wc -lt $2  &&  wc -gt $1 ]]; then
+    elif [[ $wc -lt $2  &&  $wc -gt $1 ]]; then
         mv "${filename}" ./b
     else
         mv "${filename}" ./c
     fi
 
-done < <(find . -mindepth 0  -maxdepth 0 -type f)
+done < <(find . -mindepth 1  -maxdepth 1 -type f -print0 )
