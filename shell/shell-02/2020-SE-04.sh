@@ -29,18 +29,17 @@ while read -d $'\0' pic; do
     cp "${pic}" "${2}/images/$cs.jpg"
 
     mkdir -p "${2}/by-date/$date/by-album/$album/by-title"
-    ln -s "${2}/images/$cs.jpg" "${2}/by-date/$date/by-album/$album/by-title/$title.jpg"
+    ln -s "$(realpath "${2}")/images/$cs.jpg" "${2}/by-date/$date/by-album/$album/by-title/$title.jpg"
 
     mkdir -p "${2}/by-date/$date/by-title"
-    ln -s "${2}/images/$cs.jpg" "${2}/by-date/$date/by-title/$title.jpg"
+    ln -s "$(realpath "${2}")/images/$cs.jpg" "${2}/by-date/$date/by-title/$title.jpg"
 
     mkdir -p "${2}/by-album/$album/by-date/$date/by-title"
-    ln -s "${2}/images/$cs.jpg" "${2}/by-album/$album/by-date/$date/by-title/$title.jpg"
+    ln -s "$(realpath "${2}")/images/$cs.jpg" "${2}/by-album/$album/by-date/$date/by-title/$title.jpg"
 
     mkdir -p "${2}/by-album/$album/by-title"
-    ln -s "${2}/images/$cs.jpg" "${2}/by-album/$album/by-title/$title.jpg"
+    ln -s "$(realpath "${2}")/images/$cs.jpg" "${2}/by-album/$album/by-title/$title.jpg"
 
     mkdir -p "${2}/by-title"
-    ln -s "${2}/images/$cs.jpg" "${2}/by-title/$title.jpg"
+    ln -s "$(realpath "${2}")/images/$cs.jpg" "${2}/by-title/$title.jpg"
 
-done < <(find "${1}"  -type f -print0)
