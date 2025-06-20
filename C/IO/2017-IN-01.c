@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 
     }
 
-    if(readBytes < 0 ) err(8, "Can't read from file 2");
+    if(readBytes != 0 ) err(8, "Can't read from file 2");
 
     close(fd1);
     close(fd2);
