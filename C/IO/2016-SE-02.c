@@ -2,6 +2,7 @@
 #include <err.h>
 #include <stdint.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 struct pair {
     uint32_t first;
@@ -12,6 +13,9 @@ typedef struct pair pair_t;
 int main(int argc, char* argv[]) {
 
     if(argc != 4) { errx(1,"Params must be 3!"); }
+    struct stat s;
+    if(stat(argv[1], &s) < 0) { err(7, "Can't take stat"); }
+    if(s.st_size % (2 * sizeof(uint32_t)) != 0) { errx(8, "First file is not in valid format"); }
 
     int fd1 = open(argv[1], O_RDONLY);
     if(fd1 < 0) { err(2, "Can't open first file"); }
