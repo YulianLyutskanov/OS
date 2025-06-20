@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 
     while((readBytes = read(fd2, &t, sizeof(t))) == sizeof(t)){
 
-        if(t.offset >= st1.st_size) errx(10, "Invalid triplet format");
+        if(t.offset + t.len >= st1.st_size) errx(10, "Invalid triplet format");
 
         if(lseek(fd1, t.offset, SEEK_SET) < 0 ) err(8, "Can't seek");
 
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 
     }
 
-    if(readBytes != 0 ) err(8, "Can't read from file 2");
+    if(readBytes != 0) err(8, "Can't read from file 2");
 
     close(fd1);
     close(fd2);
