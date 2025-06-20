@@ -6,7 +6,7 @@
 int main(int argc, char* argv[]){
 
     if(argc != 2)
-        err(1, "Programm must accept exactly 1 parameter");
+        errx(1, "Number of parameters must be 1!");
 
     int fd = open(argv[1], O_RDWR);
     if(fd == -1) { err(2, "Couldn't open file"); }
@@ -24,8 +24,9 @@ int main(int argc, char* argv[]){
     if(lseek(fd, 0, SEEK_SET) == -1) { err(4,"Could not move to begin to file"); }
 
     for(uint16_t i = 0; i < 256; i++){
+        uint8_t c = (uint8_t)i;
         for(uint32_t j = 0; j < byte[i]; j++){
-            if(write(fd, &i, 1) != 1)
+            if(write(fd, &c, sizeof(c)) != 1)
                 err(5,"Could not write to file");
         }
     }
