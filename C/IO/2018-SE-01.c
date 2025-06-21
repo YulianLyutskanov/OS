@@ -7,9 +7,7 @@
 int main(int argc, char* argv[]) {
 
     if(argc != 3) errx(1, "2 params needed");
-
-
-
+    
     if(strcmp(argv[1], "-d") == 0) {
         uint8_t hash[256] = {0};
         uint16_t len = strlen(argv[2]);
